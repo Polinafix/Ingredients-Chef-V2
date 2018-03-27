@@ -7,15 +7,36 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navigationBarAppearance = UINavigationBar.appearance()
+    var tabBarAppearance  = UITabBar.appearance()
+    
+    let dataController = DataController(modelName:"Model")
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        navigationBarAppearance.tintColor = UIColor.white
+        navigationBarAppearance.barTintColor = UIColor(red: 242/255.0, green: 120/255.0, blue: 75/255.0,alpha: 1.0)
+        navigationBarAppearance.titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Palatino-bold", size: 20)!]
+        
+        tabBarAppearance.tintColor = UIColor.black
+        tabBarAppearance.barTintColor = UIColor(red: 245/255.0, green: 160/255.0, blue: 129/255.0,alpha: 0.5)
+        
+        dataController.load()
+        
+        guard let tabController = window?.rootViewController as? UITabBarController,
+            let navViewController = tabController.viewControllers![0] as? UINavigationController else {
+                return true
+        }
+        
+        let ingredientsViewController = navViewController.topViewController as! IngredientsTableViewController
+        ingredientsViewController.dataController = dataController
         return true
     }
 

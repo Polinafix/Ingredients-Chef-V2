@@ -12,25 +12,30 @@ import CoreData
 class IngredientsTableViewController: UITableViewController {
     
     var dataController:DataController!
-    var ingredientsList:[Ingredient] = []
-    
+    //var ingredientsList:[Ingredient] = []
+    var fetchedResultsController:NSFetchedResultsController<Ingredient>!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let fetchRequest:NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-        if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            ingredientsList = result
-            tableView.reloadData()
-        }else {
-            print("Nothing")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        }catch{
+            fatalError("Fetch could not be performed: \(error.localizedDescription)")
         }
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        fetchedResultsController = nil
     }
     @IBAction func addIngredient(_ sender: UIBarButtonItem) {
         presentNewIngredientAlert()
@@ -74,49 +79,33 @@ class IngredientsTableViewController: UITableViewController {
 // ask the context to save the ingredient to the persistent store
         try? dataController.viewContext.save()
         
-        let fetchRequest:NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-        if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            ingredientsList = result
-            tableView.reloadData()
-        }else {
-            print("Nothing")
-        }
-        
     }
     
     /// Deletes the notebook at the specified index path
     func deleteIngredient(at indexPath: IndexPath) {
-        //15.1 get a reference to the notebook to delete
-        let ingredientToDelete = ingredient(at: indexPath)
-        //15.2 call the context's delete function passing in that notebook
+        let ingredientToDelete = fetchedResultsController.object(at: indexPath)
         dataController.viewContext.delete(ingredientToDelete)
-        //15.3 try saving the change to the persistent store
         try? dataController.viewContext.save()
-        ingredientsList.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
-    }
-    
-    func ingredient(at indexPath: IndexPath) -> Ingredient {
-        return ingredientsList[indexPath.row]
+        
     }
     
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return fetchedResultsController.sections?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ingredientsList.count
+       return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
-        
-        let item = ingredientsList[indexPath.row]
+        let item = fetchedResultsController.object(at: indexPath)
+        //let item = ingredientsList[indexPath.row]
         cell.textLabel?.text = item.name
         cell.textLabel?.font = UIFont(name: "Palatino", size: 19)
         configureCheckmark(for: cell, with: item)
@@ -135,21 +124,7 @@ class IngredientsTableViewController: UITableViewController {
             cell.accessoryType = .none
         }
     }
-    
-   
-    
-    
- 
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
@@ -160,20 +135,6 @@ class IngredientsTableViewController: UITableViewController {
     }
  
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -185,4 +146,34 @@ class IngredientsTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension IngredientsTableViewController:NSFetchedResultsControllerDelegate {
+    
+    //when the fetched object has been changed, tableview should update the effected rows
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            //newIndexPathParameter contains the index Path of the row to insert
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            break
+        case .delete:
+            //indexPath contains the index path of teh row to delete
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            break
+        default:
+            break
+        }
+    }
+    
+    //These methods mark the beginning and end of a batch of updates and are used to make the corresponding UITableView calls.
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
 }

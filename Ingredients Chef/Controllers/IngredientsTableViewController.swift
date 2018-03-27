@@ -71,7 +71,6 @@ class IngredientsTableViewController: UITableViewController {
         let ingredient = Ingredient(context: dataController.viewContext)
         ingredient.name = name
         ingredient.checked = true
-
 // ask the context to save the ingredient to the persistent store
         try? dataController.viewContext.save()
         
@@ -83,8 +82,22 @@ class IngredientsTableViewController: UITableViewController {
             print("Nothing")
         }
         
-        
-        
+    }
+    
+    /// Deletes the notebook at the specified index path
+    func deleteIngredient(at indexPath: IndexPath) {
+        //15.1 get a reference to the notebook to delete
+        let ingredientToDelete = ingredient(at: indexPath)
+        //15.2 call the context's delete function passing in that notebook
+        dataController.viewContext.delete(ingredientToDelete)
+        //15.3 try saving the change to the persistent store
+        try? dataController.viewContext.save()
+        ingredientsList.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    
+    func ingredient(at indexPath: IndexPath) -> Ingredient {
+        return ingredientsList[indexPath.row]
     }
     
     // MARK: - Table view data source
@@ -96,7 +109,7 @@ class IngredientsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ingredientsList.count ?? 1
+        return ingredientsList.count
     }
 
     
@@ -106,19 +119,13 @@ class IngredientsTableViewController: UITableViewController {
         let item = ingredientsList[indexPath.row]
         cell.textLabel?.text = item.name
         cell.textLabel?.font = UIFont(name: "Palatino", size: 19)
-        
-//        cell.layer.cornerRadius = 10//set corner radius here
-//        cell.layer.borderColor = UIColor.black.cgColor  // set cell border color here
-//        cell.layer.borderWidth = 0.8 // set border width here
-        
-        
         configureCheckmark(for: cell, with: item)
         
         return cell
 
         
     }
-    
+    //Helpers
     func configureCheckmark(for cell: UITableViewCell,
                             with item:Ingredient) {
         
@@ -128,6 +135,10 @@ class IngredientsTableViewController: UITableViewController {
             cell.accessoryType = .none
         }
     }
+    
+   
+    
+    
  
 
     /*
@@ -138,17 +149,16 @@ class IngredientsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        switch editingStyle {
+        case .delete:
+            deleteIngredient(at: indexPath)
+        default: () // Unsupported
+        }
     }
-    */
+ 
 
     /*
     // Override to support rearranging the table view.

@@ -11,14 +11,23 @@ import CoreData
 
 class IngredientsTableViewController: UITableViewController {
     
+    var button = UIButton()
     var dataController:DataController!
-    //var ingredientsList:[Ingredient] = []
     var fetchedResultsController:NSFetchedResultsController<Ingredient>!
     
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    fileprivate func buttonOnOrOff() {
+        if fetchedResultsController.sections?[0].numberOfObjects == 0 {
+            button.isHidden = true
+            starterMessage(message: " Please add your Ingredients to start searching for amazing recipes! ", viewController: self,empty:true)
+        }else{
+            button.isHidden = false
+            starterMessage(message: "", viewController: self,empty:false)
+        }
+    }
+    
+    fileprivate func setupFetchedResultsController() {
+        
         let fetchRequest:NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -30,7 +39,21 @@ class IngredientsTableViewController: UITableViewController {
         }catch{
             fatalError("Fetch could not be performed: \(error.localizedDescription)")
         }
-        
+        buttonOnOrOff()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //create a floating button
+        createButton(160)
+        setupFetchedResultsController()
+        NotificationCenter.default.addObserver(self, selector: #selector(IngredientsTableViewController.orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+  
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        NotificationCenter.default.addObserver(self, selector: #selector(IngredientsTableViewController.orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -49,6 +72,7 @@ class IngredientsTableViewController: UITableViewController {
         let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] action in
             if let name = alert.textFields?.first?.text {
                 self?.addIngredient(name: name)
+                
                 
             }
         }
@@ -78,6 +102,7 @@ class IngredientsTableViewController: UITableViewController {
         ingredient.checked = true
 // ask the context to save the ingredient to the persistent store
         try? dataController.viewContext.save()
+        buttonOnOrOff()
         
     }
     
@@ -86,8 +111,62 @@ class IngredientsTableViewController: UITableViewController {
         let ingredientToDelete = fetchedResultsController.object(at: indexPath)
         dataController.viewContext.delete(ingredientToDelete)
         try? dataController.viewContext.save()
+        buttonOnOrOff()
         
     }
+    //MARK: - Helper methods
+    func createButton(_ size:CGFloat){
+        button = UIButton(frame:CGRect(origin: CGPoint(x:self.view.frame.width/1.5, y: self.view.frame.size.height - size), size: CGSize(width: 80, height: 80)))
+        let image = UIImage(named: "arrow")
+        button.setImage(image, for: .normal)
+        self.navigationController?.view.addSubview(button)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+    }
+    
+    @objc func orientationChanged()
+    {
+        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+        {
+            createButton(160)
+        }
+    }
+    
+    @objc func buttonAction(sender:UIButton) {
+        performSegue(withIdentifier: "showRecipes", sender: self)
+        
+    }
+    
+    func starterMessage(message:String, viewController:UITableViewController,empty:Bool) {
+        let messageLabel = UILabel(frame: CGRect(x:0,y:0,width:viewController.view.bounds.size.width,height: viewController.view.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = UIColor.gray
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "TrebuchetMS", size: 20)
+        messageLabel.sizeToFit()
+        if empty {
+            viewController.tableView.backgroundView = messageLabel;
+            viewController.tableView.separatorStyle = .none;
+        } else {
+            viewController.tableView.backgroundView = UIView();
+            viewController.tableView.separatorStyle = .singleLine
+            viewController.tableView.tableFooterView?.isHidden = true
+            tableView.tableFooterView = UIView()
+            
+        }
+    }
+    
+    func configureCheckmark(for cell: UITableViewCell,
+                            with item:Ingredient) {
+        
+        if item.checked {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+    }
+
     
     // MARK: - Table view data source
 
@@ -114,17 +193,7 @@ class IngredientsTableViewController: UITableViewController {
 
         
     }
-    //Helpers
-    func configureCheckmark(for cell: UITableViewCell,
-                            with item:Ingredient) {
-        
-        if item.checked {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
-    }
-
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
@@ -134,7 +203,6 @@ class IngredientsTableViewController: UITableViewController {
         }
     }
  
-
 
     /*
     // MARK: - Navigation

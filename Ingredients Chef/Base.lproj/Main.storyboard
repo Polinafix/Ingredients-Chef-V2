@@ -171,7 +171,7 @@
         <!--Recipe List-->
         <scene sceneID="1OY-xi-GFb">
             <objects>
-                <collectionViewController id="a7h-zc-bey" customClass="FoundRecipesCollectionViewController" customModule="Ingredients_Chef" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="a7h-zc-bey" customClass="FoundRecipesViewController" customModule="Ingredients_Chef" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9a6-6t-Wky">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +183,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="btS-hz-Fln" customClass="RecipeCell" customModule="Ingredients_Chef" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="btS-hz-Fln" customClass="RecipeCell" customModule="Ingredients_Chef" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="136"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -221,13 +221,17 @@
                                     <constraint firstItem="WKM-TD-wXy" firstAttribute="leading" secondItem="btS-hz-Fln" secondAttribute="leading" constant="2" id="ztr-Qu-Qlb"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="activityIndicator" destination="THW-Vb-Qk9" id="I4Q-gK-vJh"/>
-                                    <outlet property="imageView" destination="qje-Iw-iY4" id="ZoN-oy-rus"/>
-                                    <outlet property="recipeName" destination="WKM-TD-wXy" id="Hmh-OA-B41"/>
+                                    <outlet property="activityIndicator" destination="THW-Vb-Qk9" id="09m-So-BtG"/>
+                                    <outlet property="imageView" destination="qje-Iw-iY4" id="JXT-2b-dGc"/>
+                                    <outlet property="recipeName" destination="WKM-TD-wXy" id="sX5-kI-lyH"/>
                                     <segue destination="7PV-Qk-VJa" kind="presentation" identifier="showDetail" id="FjM-uN-Sft"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="a7h-zc-bey" id="bBE-OT-jSu"/>
+                            <outlet property="delegate" destination="a7h-zc-bey" id="y3d-x3-cz6"/>
+                        </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Recipe List" id="zdi-R8-i0g">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Bss-Mr-osd"/>
@@ -256,14 +260,14 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tb8-6f-ELT">
-                                <rect key="frame" x="0.0" y="309" width="375" height="309"/>
+                                <rect key="frame" x="0.0" y="309" width="375" height="358"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="PER-5w-FSC">
                                     <rect key="frame" x="0.0" y="72" width="375" height="287"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gmG-LE-ARV">
-                                            <rect key="frame" x="8" y="0.0" width="651" height="279"/>
+                                            <rect key="frame" x="8" y="0.0" width="359" height="279"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -413,6 +417,6 @@
         <image name="default" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S6U-XR-V2L"/>
+        <segue reference="FjM-uN-Sft"/>
     </inferredMetricsTieBreakers>
 </document>

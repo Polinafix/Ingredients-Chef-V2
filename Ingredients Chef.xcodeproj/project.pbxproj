@@ -14,6 +14,12 @@
 		E0C3336020695EEB002AB85B /* IngredientsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C3335F20695EEB002AB85B /* IngredientsTableViewController.swift */; };
 		E0C333642069662D002AB85B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0C333622069662D002AB85B /* Model.xcdatamodeld */; };
 		E0C3336720697B13002AB85B /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C3336620697B13002AB85B /* DataController.swift */; };
+		E0C3338720752772002AB85B /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C3338620752772002AB85B /* RecipeCell.swift */; };
+		E0C33389207528DA002AB85B /* FoundRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C33388207528DA002AB85B /* FoundRecipesViewController.swift */; };
+		E0C333A920753640002AB85B /* TheRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333A820753640002AB85B /* TheRecipe.swift */; };
+		E0C333AB207536E6002AB85B /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333AA207536E6002AB85B /* RecipeDetail.swift */; };
+		E0C333B020753D8B002AB85B /* SpoonacularAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333AF20753D8B002AB85B /* SpoonacularAPIManager.swift */; };
+		E0C333B2207553D2002AB85B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333B1207553D2002AB85B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,12 @@
 		E0C3335F20695EEB002AB85B /* IngredientsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewController.swift; sourceTree = "<group>"; };
 		E0C333632069662D002AB85B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E0C3336620697B13002AB85B /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		E0C3338620752772002AB85B /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		E0C33388207528DA002AB85B /* FoundRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundRecipesViewController.swift; sourceTree = "<group>"; };
+		E0C333A820753640002AB85B /* TheRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRecipe.swift; sourceTree = "<group>"; };
+		E0C333AA207536E6002AB85B /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
+		E0C333AF20753D8B002AB85B /* SpoonacularAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIManager.swift; sourceTree = "<group>"; };
+		E0C333B1207553D2002AB85B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,8 @@
 		E0C3334A206955CC002AB85B /* Ingredients Chef */ = {
 			isa = PBXGroup;
 			children = (
+				E0C333AC20753CA8002AB85B /* Networking */,
+				E0C3338620752772002AB85B /* RecipeCell.swift */,
 				E0C33365206979D7002AB85B /* Controllers */,
 				E0C333612069661E002AB85B /* Model */,
 				E0C3334B206955CC002AB85B /* AppDelegate.swift */,
@@ -74,6 +88,8 @@
 			children = (
 				E0C333622069662D002AB85B /* Model.xcdatamodeld */,
 				E0C3336620697B13002AB85B /* DataController.swift */,
+				E0C333A820753640002AB85B /* TheRecipe.swift */,
+				E0C333AA207536E6002AB85B /* RecipeDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -82,8 +98,18 @@
 			isa = PBXGroup;
 			children = (
 				E0C3335F20695EEB002AB85B /* IngredientsTableViewController.swift */,
+				E0C33388207528DA002AB85B /* FoundRecipesViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E0C333AC20753CA8002AB85B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E0C333AF20753D8B002AB85B /* SpoonacularAPIManager.swift */,
+				E0C333B1207553D2002AB85B /* Constants.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,10 +184,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0C333AB207536E6002AB85B /* RecipeDetail.swift in Sources */,
+				E0C3338720752772002AB85B /* RecipeCell.swift in Sources */,
 				E0C3336020695EEB002AB85B /* IngredientsTableViewController.swift in Sources */,
+				E0C333A920753640002AB85B /* TheRecipe.swift in Sources */,
+				E0C33389207528DA002AB85B /* FoundRecipesViewController.swift in Sources */,
+				E0C333B2207553D2002AB85B /* Constants.swift in Sources */,
 				E0C3336720697B13002AB85B /* DataController.swift in Sources */,
 				E0C3334C206955CC002AB85B /* AppDelegate.swift in Sources */,
 				E0C333642069662D002AB85B /* Model.xcdatamodeld in Sources */,
+				E0C333B020753D8B002AB85B /* SpoonacularAPIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

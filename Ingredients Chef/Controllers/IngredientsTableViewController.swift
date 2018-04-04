@@ -13,6 +13,8 @@ class IngredientsTableViewController: UITableViewController {
     
     var button = UIButton()
     var dataController:DataController!
+    var ingredientList: String = ""
+    var checkedIngredients:[String] = []
     var fetchedResultsController:NSFetchedResultsController<Ingredient>!
     
 
@@ -190,8 +192,27 @@ class IngredientsTableViewController: UITableViewController {
         configureCheckmark(for: cell, with: item)
         
         return cell
-
-        
+     
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at:  indexPath) {
+            
+            let item = fetchedResultsController.object(at: indexPath)
+            item.checked = !item.checked
+            configureCheckmark(for: cell, with:item)
+            try! dataController.viewContext.save()
+            //CoreDataStack.saveContext(managedContext)
+            
+            
+            if item.checked {
+                ingredientList = item.name!
+                
+            }
+            print(ingredientList)
+            
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // Override to support editing the table view.
@@ -204,16 +225,26 @@ class IngredientsTableViewController: UITableViewController {
     }
  
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+        if segue.identifier == "showRecipes"  {
+            let navController = segue.destination as! UINavigationController
+            let foundController = navController.topViewController as! FoundRecipesViewController
+            //create a separate array of the checked ingredients
+            
+            for ingr in fetchedResultsController.fetchedObjects! {
+                if ingr.checked {
+                    checkedIngredients.append(ingr.name!)
+                }
+            }
+            //convert array into string
+            let ingredientList: String = checkedIngredients.joined(separator: ",")
+            foundController.chosenIngredients = ingredientList
+        }
+     }
 }
 
 extension IngredientsTableViewController:NSFetchedResultsControllerDelegate {

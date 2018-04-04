@@ -13,17 +13,51 @@ private let reuseIdentifier = "CollectionCell"
 class FoundRecipesViewController: UICollectionViewController {
     
     var chosenIngredients:String = ""
+    var recipesArray = [TheRecipe]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadRecipes()
 
   
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //downloading recipes
+    func loadRecipes(){
+        
+        SpoonacularAPIManager.sharedInstance().findRecipes(chosenIngredients) { (results, error) in
+            
+            guard error == nil else {
+                self.showAlert(title: "Error", message: "\(error!.localizedDescription)")
+                return
+            }
+            if let theResults = results {
+                
+                self.recipesArray = theResults
+                print("\(self.recipesArray.count) recipes fetched")
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
+                }
+                
+            }else {
+                self.showAlert(title: "No Recipes Found", message: "No recipes found for these ingredients")
+                print("no recipes for these ingredients")
+            }
+            
+        }
+        
     }
+    
+    func showAlert(title:String, message:String?) {
+        
+        if let message = message {
+            let alert = UIAlertController(title: title, message: "\(message)", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -34,26 +68,46 @@ class FoundRecipesViewController: UICollectionViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return recipesArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? RecipeCell
     
         // Configure the cell
+        let recipe = recipesArray[indexPath.row]
+        cell?.imageView.image = UIImage(named:"default")
+        cell?.activityIndicator.startAnimating()
+        
+        if recipe.data != nil {
+            DispatchQueue.main.async {
+                cell?.activityIndicator.stopAnimating()
+                cell?.activityIndicator.hidesWhenStopped = true
+            }
+            cell?.imageView.image = UIImage(data: recipe.data!)
+        } else {
+            SpoonacularAPIManager.sharedInstance().fromUrlToData(recipe.imageURL, { (data, error) in
+                if let returnedData = data {
+                    DispatchQueue.main.async {
+                        recipe.data = returnedData
+                        cell?.imageView.image = UIImage(data: recipe.data!)
+                        cell?.recipeName.text = recipe.title
+                        cell?.activityIndicator.stopAnimating()
+                        cell?.activityIndicator.hidesWhenStopped = true
+                    }
+                } else {
+                    print("Data error: \(String(describing: error))")
+                }
+            })
+        }
     
-        return cell
+        return cell!
     }
 
     // MARK: UICollectionViewDelegate

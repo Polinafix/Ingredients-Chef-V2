@@ -177,6 +177,8 @@ class SpoonacularAPIManager {
     
     //MARK: Helper methods
     
+    
+    
     func urlFromParameters(_ parameters: [String:AnyObject],withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
@@ -191,6 +193,21 @@ class SpoonacularAPIManager {
         }
         
         return components.url!
+    }
+    //MARK: Convert to data
+    func fromUrlToData(_ url: String, _ completionHandler:@escaping (_ recipeData: Data?,_ error: String?) -> Void){
+        
+        if let url = URL(string: url){
+            let request = URLRequest(url:url)
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error == nil{
+                    completionHandler(data, nil)
+                }else{
+                    completionHandler(nil, error?.localizedDescription)
+                }
+            })
+            task.resume()
+        }
     }
     
     

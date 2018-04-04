@@ -12,15 +12,26 @@ private let reuseIdentifier = "CollectionCell"
 
 class FoundRecipesViewController: UICollectionViewController {
     
+    @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!
+    
     var chosenIngredients:String = ""
     var recipesArray = [TheRecipe]()
 
+    fileprivate func editCollectionLayout() {
+        let space:CGFloat = 3.0
+        let dimension = (view.frame.size.width - (2 * space)) / 2.0
+        
+        collectionLayout.minimumInteritemSpacing = space
+        collectionLayout.minimumLineSpacing = space
+        collectionLayout.itemSize = CGSize(width: dimension, height: dimension)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadRecipes()
+        editCollectionLayout()
 
-  
     }
 
     //downloading recipes

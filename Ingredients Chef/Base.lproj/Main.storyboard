@@ -236,6 +236,9 @@
                     <navigationItem key="navigationItem" title="Recipe List" id="zdi-R8-i0g">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Bss-Mr-osd"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionLayout" destination="0gt-rH-6AV" id="24S-vh-S9G"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TlI-ul-DKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -414,7 +417,7 @@
     <resources>
         <image name="121727" width="16" height="16"/>
         <image name="65850-200" width="16" height="16"/>
-        <image name="default" width="16" height="16"/>
+        <image name="default" width="1280" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FjM-uN-Sft"/>

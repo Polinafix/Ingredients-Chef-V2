@@ -234,7 +234,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Recipe List" id="zdi-R8-i0g">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Bss-Mr-osd"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Bss-Mr-osd">
+                            <connections>
+                                <action selector="cancelClicked:" destination="a7h-zc-bey" id="34F-r0-aJr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionLayout" destination="0gt-rH-6AV" id="24S-vh-S9G"/>
@@ -296,12 +300,12 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="gNX-DZ-fmZ">
-                                <rect key="frame" x="97" y="72" width="181" height="40"/>
+                                <rect key="frame" x="115.5" y="72" width="144" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="clE-pc-SEh">
-                                        <rect key="frame" x="0.0" y="0.0" width="101" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="144" height="40"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="65850-200" translatesAutoresizingMaskIntoConstraints="NO" id="NFI-gr-0kG">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" translatesAutoresizingMaskIntoConstraints="NO" id="NFI-gr-0kG">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="Lzg-gU-c0L"/>
@@ -314,16 +318,33 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwo-87-ZeO" customClass="DOFavoriteButton" customModule="Ingredients_Chef" customModuleProvider="target">
+                                                <rect key="frame" x="104" y="0.0" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="2hg-Ye-HZf"/>
+                                                    <constraint firstAttribute="height" constant="40" id="dLx-aD-Bbc"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="heart"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="imageColorOn">
+                                                        <color key="value" red="1" green="0.1206711058940384" blue="0.3435429932153552" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="imageColorOff">
+                                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="circleColor">
+                                                        <color key="value" red="0.1347057066" green="0.4983530618" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                        <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCi-Cd-B37">
-                                        <rect key="frame" x="141" y="0.0" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="aFj-bI-VDh"/>
-                                            <constraint firstAttribute="width" constant="40" id="gBP-Qh-9bD"/>
-                                        </constraints>
-                                        <state key="normal" title="Button" image="121727"/>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Kaf-97-RSz">
@@ -341,10 +362,10 @@
                             <constraint firstItem="Kaf-97-RSz" firstAttribute="centerY" secondItem="0pg-LW-EmX" secondAttribute="centerY" id="Dl9-9k-FEk"/>
                             <constraint firstAttribute="trailing" secondItem="Tb8-6f-ELT" secondAttribute="trailing" id="O6Q-2o-G27"/>
                             <constraint firstItem="gNX-DZ-fmZ" firstAttribute="centerX" secondItem="0pg-LW-EmX" secondAttribute="centerX" id="WdM-Kn-D14"/>
-                            <constraint firstItem="gNX-DZ-fmZ" firstAttribute="top" secondItem="Z6y-yP-VrQ" secondAttribute="bottom" constant="8" symbolic="YES" id="YLw-hL-c4F"/>
                             <constraint firstItem="Tb8-6f-ELT" firstAttribute="top" secondItem="g8o-Y9-fCs" secondAttribute="bottom" constant="2" id="cGd-aa-Kau"/>
+                            <constraint firstItem="Tb8-6f-ELT" firstAttribute="bottom" secondItem="jdG-bi-Fxh" secondAttribute="top" id="f5a-az-ynr"/>
                             <constraint firstAttribute="trailing" secondItem="g8o-Y9-fCs" secondAttribute="trailing" id="iEr-DU-YHI"/>
-                            <constraint firstItem="Tb8-6f-ELT" firstAttribute="bottom" secondItem="jdG-bi-Fxh" secondAttribute="top" id="iMa-mA-etg"/>
+                            <constraint firstItem="gNX-DZ-fmZ" firstAttribute="top" secondItem="Z6y-yP-VrQ" secondAttribute="bottom" constant="8" symbolic="YES" id="jov-0n-Aup"/>
                             <constraint firstItem="g8o-Y9-fCs" firstAttribute="leading" secondItem="0pg-LW-EmX" secondAttribute="leading" id="nnQ-kH-gSe"/>
                             <constraint firstItem="Tb8-6f-ELT" firstAttribute="leading" secondItem="0pg-LW-EmX" secondAttribute="leading" id="ofd-np-TOT"/>
                         </constraints>
@@ -353,10 +374,13 @@
                     <navigationItem key="navigationItem" title="Instructions" id="3zW-9K-qFS">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Pkm-Sl-6ok"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="favButton" destination="bwo-87-ZeO" id="XPX-bI-MaL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMy-hQ-kOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2009" y="2000"/>
+            <point key="canvasLocation" x="2008.8" y="1999.2503748125939"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h46-fd-YLY">
@@ -415,9 +439,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="121727" width="16" height="16"/>
-        <image name="65850-200" width="16" height="16"/>
         <image name="default" width="1280" height="960"/>
+        <image name="heart" width="128" height="128"/>
+        <image name="timer" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FjM-uN-Sft"/>

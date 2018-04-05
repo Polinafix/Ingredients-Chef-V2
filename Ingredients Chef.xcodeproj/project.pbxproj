@@ -20,6 +20,8 @@
 		E0C333AB207536E6002AB85B /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333AA207536E6002AB85B /* RecipeDetail.swift */; };
 		E0C333B020753D8B002AB85B /* SpoonacularAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333AF20753D8B002AB85B /* SpoonacularAPIManager.swift */; };
 		E0C333B2207553D2002AB85B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333B1207553D2002AB85B /* Constants.swift */; };
+		E0C333B62076865C002AB85B /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333B52076865C002AB85B /* RecipeDetailsViewController.swift */; };
+		E0C333BA207688CB002AB85B /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C333B9207688CB002AB85B /* DOFavoriteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		E0C333AA207536E6002AB85B /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
 		E0C333AF20753D8B002AB85B /* SpoonacularAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIManager.swift; sourceTree = "<group>"; };
 		E0C333B1207553D2002AB85B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E0C333B52076865C002AB85B /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
+		E0C333B9207688CB002AB85B /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 		E0C3334A206955CC002AB85B /* Ingredients Chef */ = {
 			isa = PBXGroup;
 			children = (
+				E0C333BB207688D3002AB85B /* FavButton */,
 				E0C333AC20753CA8002AB85B /* Networking */,
 				E0C3338620752772002AB85B /* RecipeCell.swift */,
 				E0C33365206979D7002AB85B /* Controllers */,
@@ -99,6 +104,7 @@
 			children = (
 				E0C3335F20695EEB002AB85B /* IngredientsTableViewController.swift */,
 				E0C33388207528DA002AB85B /* FoundRecipesViewController.swift */,
+				E0C333B52076865C002AB85B /* RecipeDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -110,6 +116,14 @@
 				E0C333B1207553D2002AB85B /* Constants.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		E0C333BB207688D3002AB85B /* FavButton */ = {
+			isa = PBXGroup;
+			children = (
+				E0C333B9207688CB002AB85B /* DOFavoriteButton.swift */,
+			);
+			path = FavButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,11 +202,13 @@
 				E0C3338720752772002AB85B /* RecipeCell.swift in Sources */,
 				E0C3336020695EEB002AB85B /* IngredientsTableViewController.swift in Sources */,
 				E0C333A920753640002AB85B /* TheRecipe.swift in Sources */,
+				E0C333BA207688CB002AB85B /* DOFavoriteButton.swift in Sources */,
 				E0C33389207528DA002AB85B /* FoundRecipesViewController.swift in Sources */,
 				E0C333B2207553D2002AB85B /* Constants.swift in Sources */,
 				E0C3336720697B13002AB85B /* DataController.swift in Sources */,
 				E0C3334C206955CC002AB85B /* AppDelegate.swift in Sources */,
 				E0C333642069662D002AB85B /* Model.xcdatamodeld in Sources */,
+				E0C333B62076865C002AB85B /* RecipeDetailsViewController.swift in Sources */,
 				E0C333B020753D8B002AB85B /* SpoonacularAPIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

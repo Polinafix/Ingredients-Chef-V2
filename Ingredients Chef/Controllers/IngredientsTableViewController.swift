@@ -55,6 +55,7 @@ class IngredientsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setupFetchedResultsController()
         NotificationCenter.default.addObserver(self, selector: #selector(IngredientsTableViewController.orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 

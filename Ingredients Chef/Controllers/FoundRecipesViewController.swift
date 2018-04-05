@@ -31,10 +31,15 @@ class FoundRecipesViewController: UICollectionViewController {
         
         loadRecipes()
         editCollectionLayout()
-
     }
+    
+    @IBAction func cancelClicked(_ sender: UIBarButtonItem) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 
-    //downloading recipes
+    //MARK: Networking
     func loadRecipes(){
         
         SpoonacularAPIManager.sharedInstance().findRecipes(chosenIngredients) { (results, error) in

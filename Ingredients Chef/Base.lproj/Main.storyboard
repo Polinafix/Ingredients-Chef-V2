@@ -298,6 +298,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1yc-9z-DWP" id="Bai-ct-Q3f"/>
+                                    <outlet property="delegate" destination="1yc-9z-DWP" id="wo4-ML-QPn"/>
+                                </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="gNX-DZ-fmZ">
                                 <rect key="frame" x="115.5" y="72" width="144" height="40"/>
@@ -372,10 +376,19 @@
                         <viewLayoutGuide key="safeArea" id="oIR-5Z-Pvc"/>
                     </view>
                     <navigationItem key="navigationItem" title="Instructions" id="3zW-9K-qFS">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Pkm-Sl-6ok"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Pkm-Sl-6ok">
+                            <connections>
+                                <action selector="doneClicked:" destination="1yc-9z-DWP" id="mo0-St-omx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Kaf-97-RSz" id="82D-Df-1Is"/>
                         <outlet property="favButton" destination="bwo-87-ZeO" id="XPX-bI-MaL"/>
+                        <outlet property="instructionsTextView" destination="gmG-LE-ARV" id="l1H-E4-tvc"/>
+                        <outlet property="prepTime" destination="6Sq-om-CcR" id="mdc-dn-aPv"/>
+                        <outlet property="recipeImage" destination="g8o-Y9-fCs" id="mwx-WY-l3W"/>
+                        <outlet property="tableView" destination="Tb8-6f-ELT" id="cNl-Kj-iq1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMy-hQ-kOh" userLabel="First Responder" sceneMemberID="firstResponder"/>

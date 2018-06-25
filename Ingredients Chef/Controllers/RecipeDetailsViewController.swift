@@ -9,8 +9,6 @@
 import UIKit
 
 
-
-
 class RecipeDetailsViewController: UIViewController {
 
     @IBOutlet weak var favButton: DOFavoriteButton!
@@ -19,39 +17,33 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var prepTime: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var instructionsTextView: UITextView!
-    
-    
+
     var recipeId:Int = 0
     var recipe:TheRecipe?
     var theIngredients = [String]()
     var imageUrl:String?
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTableView()
-        
         favButton.addTarget(self, action:#selector(self.tapped(sender:)), for: .touchUpInside)
-        
         loadDetailedRecipe()
         loadImage()
-
-        
     }
+
     @IBAction func doneClicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+
     //MARK: Helper method for the favorite button
     @objc func tapped(sender: DOFavoriteButton) {
         if sender.isSelected {
-            // deselect
             sender.deselect()
         } else {
-            // select with animation
             sender.select()
         }
     }
+
     //MARK: Loading the recipe details from spoonacular server
     func loadDetailedRecipe(){
         SpoonacularAPIManager.sharedInstance().showDetailedRecipe(recipeId) { (result, error) in
@@ -65,13 +57,12 @@ class RecipeDetailsViewController: UIViewController {
                     self.prepTime.text = "\(result?.readyInMinutes ?? 0) min"
                     self.tableView.reloadData()
                 }
-            }else{
+            } else {
                 self.displayErrorAlert(title: "Error", message:"\(error!.localizedDescription)")
-                
             }
         }
-        
     }
+
     //MARK: Loading the image
     func loadImage(){
         SpoonacularAPIManager.sharedInstance().fromUrlToData(imageUrl!) { (imageData, error) in
@@ -79,9 +70,8 @@ class RecipeDetailsViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.recipe?.data = data
                     self.recipeImage.image = UIImage(data: self.recipe!.data! as Data)
-                    
                 }
-            }else{
+            } else {
                 print("Data error: \(String(describing: error))")
                 //self.displayAlert(title: "Error", message: error)
             }
@@ -90,9 +80,7 @@ class RecipeDetailsViewController: UIViewController {
     
     //MARK: Helpers
     func displayErrorAlert(title:String, message:String?) {
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.hideActivityIndicator()}))
         present(alert, animated: true, completion: nil)
     }
@@ -107,20 +95,6 @@ class RecipeDetailsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
     }
-
-   
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension RecipeDetailsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -128,14 +102,13 @@ extension RecipeDetailsViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return theIngredients.count
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath)
-        
         cell.textLabel?.text = theIngredients[indexPath.row]
         cell.textLabel?.font = UIFont(name: "Palatino", size: 17)
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-        
         return cell
     }
 }

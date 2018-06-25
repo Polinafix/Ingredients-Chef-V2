@@ -19,7 +19,6 @@ class DataController {
     }
     
     init(modelName:String) {
-        //instantiate it
         persistentContainer = NSPersistentContainer(name: modelName)
     }
     //Load the persistant store

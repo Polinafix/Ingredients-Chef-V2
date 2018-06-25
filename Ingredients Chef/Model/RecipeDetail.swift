@@ -18,7 +18,6 @@ class RecipeDetail {
         self.ingredients = ingredients
         self.readyInMinutes = readyInMinutes
         self.instructions = instructions
-        
     }
 }
 

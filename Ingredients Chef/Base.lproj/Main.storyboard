@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="06O-uH-osb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="06O-uH-osb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="GeorgiaBold.ttf">
-            <string>Georgia-Bold</string>
-        </array>
-        <array key="Palatino.ttc">
-            <string>Palatino-Roman</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Ingredients-->
         <scene sceneID="cI6-9e-G0W">
@@ -47,9 +39,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="tO7-27-m5T" kind="show" identifier="showRecipes" id="zGu-vw-Mxq">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="tO7-27-m5T" kind="show" identifier="showRecipes" id="zGu-vw-Mxq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ern-vH-Dnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -141,9 +131,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="My Favorites" id="mb8-gU-VcI"/>
                     <connections>
-                        <segue destination="7PV-Qk-VJa" kind="show" identifier="showFavDetail" id="S6U-XR-V2L">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="7PV-Qk-VJa" kind="show" identifier="showFavDetail" id="S6U-XR-V2L"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXD-3k-eTv" userLabel="First Responder" sceneMemberID="firstResponder"/>

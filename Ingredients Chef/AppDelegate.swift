@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navigationBarAppearance = UINavigationBar.appearance()
     var tabBarAppearance  = UITabBar.appearance()
-    
     let dataController = DataController(modelName:"Model")
 
 

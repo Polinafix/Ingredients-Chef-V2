@@ -68,7 +68,7 @@
         <!--My Favorites-->
         <scene sceneID="sor-wa-0tU">
             <objects>
-                <tableViewController storyboardIdentifier="FavoritesVC" id="bTW-zh-I57" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FavoritesVC" id="bTW-zh-I57" customClass="FavoritesTableViewController" customModule="Ingredients_Chef" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="30" sectionFooterHeight="27" id="Mh8-U5-EvQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,9 +122,9 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="recipeImage" destination="dOZ-3e-JTD" id="ZYP-DJ-7fi"/>
-                                    <outlet property="recipeName" destination="2XO-TY-FeS" id="sBt-Qx-xJQ"/>
-                                    <outlet property="timeToCook" destination="vaF-yF-H48" id="mMy-mV-3HT"/>
+                                    <outlet property="recipeImage" destination="dOZ-3e-JTD" id="6rb-Ts-mkW"/>
+                                    <outlet property="recipeName" destination="2XO-TY-FeS" id="dUg-WP-gii"/>
+                                    <outlet property="timeToCook" destination="vaF-yF-H48" id="6nH-O9-Aej"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -255,7 +255,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tb8-6f-ELT">
-                                <rect key="frame" x="0.0" y="309" width="375" height="358"/>
+                                <rect key="frame" x="0.0" y="309" width="375" height="309"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="PER-5w-FSC">
                                     <rect key="frame" x="0.0" y="72" width="375" height="287"/>
@@ -445,6 +445,6 @@
         <image name="timer" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FjM-uN-Sft"/>
+        <segue reference="S6U-XR-V2L"/>
     </inferredMetricsTieBreakers>
 </document>

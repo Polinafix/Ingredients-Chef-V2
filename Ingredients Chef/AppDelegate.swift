@@ -30,12 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataController.load()
         
         guard let tabController = window?.rootViewController as? UITabBarController,
-            let navViewController = tabController.viewControllers![0] as? UINavigationController else {
+            let navViewControllerOne = tabController.viewControllers![0] as? UINavigationController, let navViewControllerTwo = tabController.viewControllers![1] as? UINavigationController  else {
                 return true
         }
-        
-        let ingredientsViewController = navViewController.topViewController as! IngredientsTableViewController
+
+
+        let ingredientsViewController = navViewControllerOne.topViewController as! IngredientsTableViewController
+        let favsViewController = navViewControllerTwo.topViewController as! FavoritesTableViewController
         ingredientsViewController.dataController = dataController
+        favsViewController.dataController = dataController
         return true
     }
     

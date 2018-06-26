@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64BE0FC920E2CF2600733C34 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE0FC820E2CF2600733C34 /* FavoritesTableViewController.swift */; };
+		64BE0FCB20E2D52100733C34 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE0FCA20E2D52100733C34 /* FavoriteCell.swift */; };
 		E0C3334C206955CC002AB85B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C3334B206955CC002AB85B /* AppDelegate.swift */; };
 		E0C33351206955CC002AB85B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0C3334F206955CC002AB85B /* Main.storyboard */; };
 		E0C33353206955CC002AB85B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0C33352206955CC002AB85B /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64BE0FC820E2CF2600733C34 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		64BE0FCA20E2D52100733C34 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		E0C33348206955CC002AB85B /* Ingredients Chef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ingredients Chef.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0C3334B206955CC002AB85B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0C33350206955CC002AB85B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 				E0C333BB207688D3002AB85B /* FavButton */,
 				E0C333AC20753CA8002AB85B /* Networking */,
 				E0C3338620752772002AB85B /* RecipeCell.swift */,
+				64BE0FCA20E2D52100733C34 /* FavoriteCell.swift */,
 				E0C33365206979D7002AB85B /* Controllers */,
 				E0C333612069661E002AB85B /* Model */,
 				E0C3334B206955CC002AB85B /* AppDelegate.swift */,
@@ -105,6 +110,7 @@
 				E0C3335F20695EEB002AB85B /* IngredientsTableViewController.swift */,
 				E0C33388207528DA002AB85B /* FoundRecipesViewController.swift */,
 				E0C333B52076865C002AB85B /* RecipeDetailsViewController.swift */,
+				64BE0FC820E2CF2600733C34 /* FavoritesTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0C333AB207536E6002AB85B /* RecipeDetail.swift in Sources */,
+				64BE0FC920E2CF2600733C34 /* FavoritesTableViewController.swift in Sources */,
 				E0C3338720752772002AB85B /* RecipeCell.swift in Sources */,
 				E0C3336020695EEB002AB85B /* IngredientsTableViewController.swift in Sources */,
 				E0C333A920753640002AB85B /* TheRecipe.swift in Sources */,
@@ -206,6 +213,7 @@
 				E0C33389207528DA002AB85B /* FoundRecipesViewController.swift in Sources */,
 				E0C333B2207553D2002AB85B /* Constants.swift in Sources */,
 				E0C3336720697B13002AB85B /* DataController.swift in Sources */,
+				64BE0FCB20E2D52100733C34 /* FavoriteCell.swift in Sources */,
 				E0C3334C206955CC002AB85B /* AppDelegate.swift in Sources */,
 				E0C333642069662D002AB85B /* Model.xcdatamodeld in Sources */,
 				E0C333B62076865C002AB85B /* RecipeDetailsViewController.swift in Sources */,

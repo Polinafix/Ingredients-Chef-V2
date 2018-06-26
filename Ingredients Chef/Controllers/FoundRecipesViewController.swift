@@ -15,6 +15,7 @@ class FoundRecipesViewController: UICollectionViewController {
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!
     var chosenIngredients:String = ""
     var recipesArray = [TheRecipe]()
+    var dataController:DataController!
 
     fileprivate func editCollectionLayout() {
         let space:CGFloat = 3.0
@@ -77,6 +78,7 @@ class FoundRecipesViewController: UICollectionViewController {
             controller.recipeId = recipe.id!
             controller.imageUrl = recipe.imageURL
             controller.recipe = recipe
+            controller.dataController = dataController
             collectionView?.deselectItem(at: indexPath, animated: false)
         }
     }

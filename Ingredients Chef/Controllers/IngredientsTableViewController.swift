@@ -44,7 +44,6 @@ class IngredientsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //create a floating button
         createButton(160)
         setupFetchedResultsController()
         NotificationCenter.default.addObserver(self, selector: #selector(IngredientsTableViewController.orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
@@ -108,7 +107,7 @@ class IngredientsTableViewController: UITableViewController {
 
     //MARK: - Helper methods
     func createButton(_ size:CGFloat){
-        button = UIButton(frame:CGRect(origin: CGPoint(x:self.view.frame.width/1.5, y: self.view.frame.size.height - size), size: CGSize(width: 80, height: 80)))
+        button = UIButton(frame:CGRect(origin: CGPoint(x:self.view.frame.width/1.3, y: self.view.frame.size.height - size), size: CGSize(width: 60, height: 60)))
         let image = UIImage(named: "arrow")
         button.setImage(image, for: .normal)
         self.navigationController?.view.addSubview(button)
@@ -210,6 +209,7 @@ class IngredientsTableViewController: UITableViewController {
             //convert array into string
             let ingredientList: String = checkedIngredients.joined(separator: ",")
             foundController.chosenIngredients = ingredientList
+            foundController.dataController = dataController
         }
      }
 }

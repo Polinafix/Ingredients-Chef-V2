@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 class RecipeDetailsViewController: UIViewController {
@@ -22,6 +23,7 @@ class RecipeDetailsViewController: UIViewController {
     var recipe:TheRecipe?
     var theIngredients = [String]()
     var imageUrl:String?
+    var dataController:DataController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,9 @@ class RecipeDetailsViewController: UIViewController {
             sender.deselect()
         } else {
             sender.select()
+            print("hello")
+            addFavorite()
+
         }
     }
 
@@ -77,7 +82,66 @@ class RecipeDetailsViewController: UIViewController {
             }
         }
     }
-    
+
+    func addFavorite() {
+        let managedContext = dataController.viewContext
+        let detail = Detail(context: managedContext)
+        detail.ingredientsList = theIngredients as NSObject
+        detail.instructions = instructionsTextView.text
+        if let mins = self.recipe?.details?.readyInMinutes {
+            detail.readyInMinutes = Int32(mins)
+        }
+
+        let recipe  = Recipe(context: managedContext)
+        recipe.id = Int32(recipeId)
+        recipe.title = self.recipe?.title
+        recipe.data = self.recipe?.data
+        recipe.details = detail
+        try? dataController.viewContext.save()
+
+//        let detailEntity = NSEntityDescription.entity(forEntityName: "Detail", in: managedContext)
+//        let detail = NSManagedObject(entity: detailEntity!, insertInto: managedContext)
+//        detail.setValue(theIngredients, forKey: "ingredientsList")
+//        detail.setValue(instructionsTextView.text, forKey: "instructions")
+//        detail.setValue(self.recipe?.details?.readyInMinutes, forKey: "readyInMinutes")
+
+//        let recipeEntity = NSEntityDescription.entity(forEntityName: "Recipe", in: managedContext)
+//        let recipe = NSManagedObject(entity: recipeEntity!, insertInto: managedContext)
+//        recipe.setValue(recipeId, forKey: "id")
+//        recipe.setValue(self.recipe?.title, forKey: "title")
+//        recipe.setValue(self.recipe?.data, forKey: "data")
+//        recipe.setValue(detail, forKey: "details")
+
+    }
+
+//     func addToFavorites() {
+//
+//        let favRecipe = Recipe(context: <#T##NSManagedObjectContext#>)
+//
+//
+//
+//        //let favRecipe = TheRecipe(id: recipeId, title: (recipe?.title)!, imageURL: "", details:)
+//
+//        if let currentArray = array,let currentMinutes = minutes, let instructions = instructionsView.text {
+//
+//            let details = Details(currentArray, currentMinutes, instructions, context: managedContext)
+//
+//            _ = Recipe(recipeId, self.recipe?.title, self.recipe?.data, details, context: managedContext)
+//
+//            favButton.setImage(UIImage(named:"redheart"), for: .normal)
+//
+//            favButton.isEnabled = false
+//            CoreDataStack.saveContext(managedContext)
+//
+//
+//        }else {
+//            displayAlert(title: "Problem", message: "Unable to save the recipe to favorites")
+//        }
+//        //show the alert message
+//        displayAlert(title: "Success!", message: "This recipe has just been added to your favorites!")
+//
+//    }
+
     //MARK: Helpers
     func displayErrorAlert(title:String, message:String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)

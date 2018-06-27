@@ -71,8 +71,20 @@ class FavoritesTableViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chosenRecipe = fetchedResultsController.object(at: indexPath)
+        performSegue(withIdentifier: "showFavDetail", sender: chosenRecipe)
+    }
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showFavDetail") {
+            let navigationController = segue.destination as! UINavigationController
+            let recipeVController = navigationController.topViewController as! RecipeDetailsViewController
+            recipeVController.savedRecipe = sender as? Recipe
+            recipeVController.isFavoriteDetail = true
+        }
+
 
     }
 

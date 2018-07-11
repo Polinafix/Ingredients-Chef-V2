@@ -109,7 +109,7 @@ class IngredientsTableViewController: UITableViewController {
     func createButton(_ size:CGFloat){
         button.frame = CGRect(x: 100, y: 600, width:200, height: 50)
         button.layer.cornerRadius = 10
-        button.center = CGPoint(x: UIScreen.main.bounds.size.width / 2.0, y: 500)
+        button.center = CGPoint(x: UIScreen.main.bounds.size.width / 2.0, y: 450)
         button.backgroundColor = UIColor(red: 244/255.0, green: 125/255.0, blue: 66/255.0, alpha: 1.0)
         button.setTitle("FIND RECIPES", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
@@ -168,7 +168,6 @@ class IngredientsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let item = fetchedResultsController.object(at: indexPath)
-        //let item = ingredientsList[indexPath.row]
         cell.textLabel?.text = item.name?.capitalized
         cell.textLabel?.font = UIFont(name: "Palatino", size: 19)
         cell.textLabel?.textColor = UIColor(red: 71/255.0, green: 69/255.0, blue: 67/255.0, alpha: 1.0)
@@ -182,7 +181,6 @@ class IngredientsTableViewController: UITableViewController {
             item.checked = !item.checked
             configureCheckmark(for: cell, with:item)
             try! dataController.viewContext.save()
-            //CoreDataStack.saveContext(managedContext)
             if item.checked {
                 ingredientList = item.name!
             }

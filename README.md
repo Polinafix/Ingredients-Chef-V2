@@ -18,17 +18,17 @@ Ingredients can be deleted from the list.
  While results are loading, a placeholder image and activity indicator are being shown.
   Clicking on any of the cells will take the user to the next screen with the details for the recipe.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img2](https://i.imgur.com/X1TSAII.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img2](https://i.imgur.com/nUbIJHQ.png)
 
 3) The view contains information about the cooking time, ingredients and detailed instructions for cooking and a larger picture. 
 Clicking on the heart button will save the current recipe to the core data and will be shown in the Favorites. If the current recipe already exists in the favourites list, a red heart button will be shown and will be disabled.
 Once the user clicks on the heart button the alert message is shown, stating that the recipe has been saved to the favorites. The image of the button changes to a red heart and becomes disabled.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img3](https://i.imgur.com/nVcHcvQ.gif)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img3](https://media.giphy.com/media/t98zmHeakSB2sa4ORK/giphy.gif)
 
 4) Favorites screen contains a table of recipes that were previously liked by the user. The information on this screen and the following (detailed screen) is persistent and can be deleted.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img3](https://i.imgur.com/a4obSKb.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img3](https://i.imgur.com/pb7LMPk.png)
 
 The app displays an alert view if error occurs while downloading the info from the Web.
 
@@ -53,8 +53,9 @@ The app displays an alert view if error occurs while downloading the info from t
 
 ### Todos
 
- - Work more on thr logic of the interface
- - .....
+ - Unlike and delete from favorites
+ - Save likes
+ 
 
 ### License
 This project is licensed under the MIT License - see the [MIT](https://choosealicense.com/licenses/mit/) for details

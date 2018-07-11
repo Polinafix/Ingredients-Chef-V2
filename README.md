@@ -18,7 +18,7 @@ Ingredients can be deleted from the list.
  While results are loading, a placeholder image and activity indicator are being shown.
   Clicking on any of the cells will take the user to the next screen with the details for the recipe.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img2](https://i.imgur.com/nUbIJHQ.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img2](https://i.imgur.com/5eOkdEk.png)
 
 3) The view contains information about the cooking time, ingredients and detailed instructions for cooking and a larger picture. 
 Clicking on the heart button will save the current recipe to the core data and will be shown in the Favorites. If the current recipe already exists in the favourites list, a red heart button will be shown and will be disabled.
@@ -28,7 +28,7 @@ Once the user clicks on the heart button the alert message is shown, stating tha
 
 4) Favorites screen contains a table of recipes that were previously liked by the user. The information on this screen and the following (detailed screen) is persistent and can be deleted.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img3](https://i.imgur.com/pb7LMPk.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![img3](https://i.imgur.com/yp4JuN4.png)
 
 The app displays an alert view if error occurs while downloading the info from the Web.
 

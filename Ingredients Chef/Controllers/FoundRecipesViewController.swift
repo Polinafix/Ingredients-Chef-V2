@@ -18,11 +18,11 @@ class FoundRecipesViewController: UICollectionViewController {
     var dataController:DataController!
 
     fileprivate func editCollectionLayout() {
-        let space:CGFloat = 3.0
-        let dimension = (view.frame.size.width - (2 * space)) / 2.0
+        let space:CGFloat = 10.0
+        let dimension = (view.frame.size.width - 15) / 2.0
         collectionLayout.minimumInteritemSpacing = space
         collectionLayout.minimumLineSpacing = space
-        collectionLayout.itemSize = CGSize(width: dimension, height: dimension)
+        collectionLayout.itemSize = CGSize(width: dimension, height: 185)
     }
     
     override func viewDidLoad() {
@@ -86,6 +86,8 @@ class FoundRecipesViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipesArray.count
     }
+
+    
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? RecipeCell

@@ -107,9 +107,13 @@ class IngredientsTableViewController: UITableViewController {
 
     //MARK: - Helper methods
     func createButton(_ size:CGFloat){
-        button = UIButton(frame:CGRect(origin: CGPoint(x:self.view.frame.width/1.3, y: self.view.frame.size.height - size), size: CGSize(width: 60, height: 60)))
-        let image = UIImage(named: "arrow")
-        button.setImage(image, for: .normal)
+        button.frame = CGRect(x: 100, y: 600, width:200, height: 50)
+        button.layer.cornerRadius = 10
+        button.center = CGPoint(x: UIScreen.main.bounds.size.width / 2.0, y: 500)
+        button.backgroundColor = UIColor(red: 244/255.0, green: 125/255.0, blue: 66/255.0, alpha: 1.0)
+        button.setTitle("FIND RECIPES", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.setTitleColor(UIColor.white, for: .normal)
         self.navigationController?.view.addSubview(button)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
@@ -165,8 +169,9 @@ class IngredientsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let item = fetchedResultsController.object(at: indexPath)
         //let item = ingredientsList[indexPath.row]
-        cell.textLabel?.text = item.name
+        cell.textLabel?.text = item.name?.capitalized
         cell.textLabel?.font = UIFont(name: "Palatino", size: 19)
+        cell.textLabel?.textColor = UIColor(red: 71/255.0, green: 69/255.0, blue: 67/255.0, alpha: 1.0)
         configureCheckmark(for: cell, with: item)
         return cell
     }

@@ -17,15 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var tabBarAppearance  = UITabBar.appearance()
     let dataController = DataController(modelName:"Model")
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        navigationBarAppearance.tintColor = UIColor.white
-        navigationBarAppearance.barTintColor = UIColor(red: 242/255.0, green: 120/255.0, blue: 75/255.0,alpha: 1.0)
-        navigationBarAppearance.titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Palatino-bold", size: 20)!]
-        
-        tabBarAppearance.tintColor = UIColor.black
-        tabBarAppearance.barTintColor = UIColor(red: 245/255.0, green: 160/255.0, blue: 129/255.0,alpha: 0.5)
+        navigationBarAppearance.tintColor = UIColor.black
+        navigationBarAppearance.barTintColor = UIColor(red: 229/255.0, green: 238/255.0, blue: 252/255.0,alpha: 0.4)
+        //(242, 114, 2
+        navigationBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont(name: "Palatino-bold", size: 20)!]
+        tabBarAppearance.tintColor = UIColor(red: 249/255.0, green: 123/255.0, blue: 12/255.0,alpha: 1.0)
+        tabBarAppearance.barTintColor = UIColor(red: 229/255.0, green: 238/255.0, blue: 252/255.0,alpha: 0.1)
         
         dataController.load()
         
@@ -33,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let navViewControllerOne = tabController.viewControllers![0] as? UINavigationController, let navViewControllerTwo = tabController.viewControllers![1] as? UINavigationController  else {
                 return true
         }
-
 
         let ingredientsViewController = navViewControllerOne.topViewController as! IngredientsTableViewController
         let favsViewController = navViewControllerTwo.topViewController as! FavoritesTableViewController

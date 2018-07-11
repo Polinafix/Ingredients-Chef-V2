@@ -37,7 +37,6 @@ class FoundRecipesViewController: UICollectionViewController {
 
     //MARK: Networking
     func loadRecipes() {
-
         SpoonacularAPIManager.sharedInstance().findRecipes(chosenIngredients) { (results, error) in
             guard error == nil else {
                 self.showAlert(title: "Error", message: "\(error!.localizedDescription)")
@@ -64,7 +63,6 @@ class FoundRecipesViewController: UICollectionViewController {
         }
     }
     
-
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

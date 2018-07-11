@@ -31,16 +31,8 @@ class RecipeDetailsViewController: UIViewController {
         super.viewDidLoad()
         configureTableView()
         favButton.addTarget(self, action:#selector(self.tapped(sender:)), for: .touchUpInside)
-
         if isFavoriteDetail {
-            favButton.isHidden = true
-            activityIndicator.isHidden = true
-            self.tableView.reloadData()
-            theIngredients = savedRecipe?.details?.ingredientsList as! [String]
-            instructionsTextView.text = savedRecipe?.details?.instructions
-            prepTime.text = "\(savedRecipe?.details?.readyInMinutes ?? 0) min"
-            recipeImage.image = UIImage(data: (savedRecipe?.data)! as Data)
-            isFavoriteDetail = false
+            loadSavedRecipe()
         } else {
             loadImage()
             loadDetailedRecipe()
@@ -61,8 +53,19 @@ class RecipeDetailsViewController: UIViewController {
         }
     }
 
+    fileprivate func loadSavedRecipe() {
+        favButton.isHidden = true
+        activityIndicator.isHidden = true
+        self.tableView.reloadData()
+        theIngredients = savedRecipe?.details?.ingredientsList as! [String]
+        instructionsTextView.text = savedRecipe?.details?.instructions
+        prepTime.text = "\(savedRecipe?.details?.readyInMinutes ?? 0) min"
+        recipeImage.image = UIImage(data: (savedRecipe?.data)! as Data)
+        isFavoriteDetail = false
+    }
+
     //MARK: Loading the recipe details from spoonacular server
-    func loadDetailedRecipe(){
+    fileprivate func loadDetailedRecipe(){
         SpoonacularAPIManager.sharedInstance().showDetailedRecipe(recipeId) { (result, error) in
             if error ==  nil{
                 DispatchQueue.main.async {

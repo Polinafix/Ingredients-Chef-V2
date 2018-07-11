@@ -84,8 +84,6 @@ class FavoritesTableViewController: UITableViewController {
             recipeVController.savedRecipe = sender as? Recipe
             recipeVController.isFavoriteDetail = true
         }
-
-
     }
 
     func deleteNote(at indexPath: IndexPath) {
@@ -93,8 +91,6 @@ class FavoritesTableViewController: UITableViewController {
         dataController.viewContext.delete(recipeToDelete)
         try? dataController.viewContext.save()
     }
-
-
 }
 
 extension FavoritesTableViewController: NSFetchedResultsControllerDelegate {

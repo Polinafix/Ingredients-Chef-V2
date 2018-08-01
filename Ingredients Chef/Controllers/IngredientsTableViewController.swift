@@ -109,6 +109,8 @@ class IngredientsTableViewController: UITableViewController {
     func createButton(_ size:CGFloat){
         button.frame = CGRect(x: 100, y: 600, width:200, height: 50)
         button.layer.cornerRadius = 10
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor(red: 230/255.0, green: 92/255.0, blue: 0, alpha: 1.0).cgColor
         button.center = CGPoint(x: UIScreen.main.bounds.size.width / 2.0, y: 450)
         button.backgroundColor = UIColor(red: 244/255.0, green: 125/255.0, blue: 66/255.0, alpha: 1.0)
         button.setTitle("FIND RECIPES", for: .normal)
